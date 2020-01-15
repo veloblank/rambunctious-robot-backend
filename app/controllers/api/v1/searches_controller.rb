@@ -4,10 +4,12 @@ class Api::V1::SearchesController < ApplicationController
     searches = Search.all
     render json: searches, status: 200
   end
-
+  
   def create
     search = Search.create(search_params)
-    render json: search, status: 200
+    scraper = GoodreadsScraper.new(searchTerm: params[:text])
+    books = scraper.scrape_goodreads_for_book
+    render json: search, include: [:book]
   end
 
   def destroy
@@ -23,3 +25,4 @@ class Api::V1::SearchesController < ApplicationController
   end
 
 end
+
