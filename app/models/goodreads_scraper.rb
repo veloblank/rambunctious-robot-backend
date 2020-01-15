@@ -1,4 +1,4 @@
-class Scraper < ApplicationRecord
+class GoodreadsScraper < ApplicationRecord
   require 'open-uri'
 
   GOODREADS = "https://www.goodreads.com/search?utf8=%E2%9C%93&query="
