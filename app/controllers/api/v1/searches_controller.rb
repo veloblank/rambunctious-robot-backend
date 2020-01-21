@@ -7,9 +7,12 @@ class Api::V1::SearchesController < ApplicationController
   
   def create
     search = Search.create(search_params)
-    scraper = GoodreadsScraper.new(searchTerm: params[:text])
-    books = scraper.scrape_goodreads_for_book
-    render json: search, include: [:book]
+    scraper = GoodreadsScraper.new(search_term: params[:text])
+    scraper.sanitize_search_term
+    book_html = scraper.scrape_goodreads_for_book
+    book = Book.create(book_html)
+    binding.pry
+    render json: book, status: 200
   end
 
   def destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_100403) do
+ActiveRecord::Schema.define(version: 2020_01_15_101733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_100403) do
     t.integer "words_low"
     t.integer "words_high"
     t.integer "search_id"
+    t.integer "reading_plan_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,8 +35,10 @@ ActiveRecord::Schema.define(version: 2020_01_15_100403) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "scrapers", force: :cascade do |t|
-    t.string "searchTerm"
+  create_table "reading_plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,6 +48,12 @@ ActiveRecord::Schema.define(version: 2020_01_15_100403) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["text"], name: "index_searches_on_text"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
