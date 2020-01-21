@@ -4,14 +4,8 @@ class GoodreadsScraper < ApplicationRecord
   GOODREADS = "https://www.goodreads.com/search?utf8=%E2%9C%93&query="
   GOODREADS_BASE = "https://goodreads.com"
   
-  attr_accessor :search_term
-  
-  def initialize(term)
-    @search_term = sanitize_search_term(term)
-  end
-  
-  def sanitize_search_term(term)
-    term.split(' ').join('+')
+  def sanitize_search_term
+    search_term.split(' ').join('+')
   end
   
   def scrape_goodreads_for_book
@@ -35,6 +29,7 @@ class GoodreadsScraper < ApplicationRecord
       pages: num_pages,
       words_low: num_words_low,
       words_high: num_words_high
+      search_id: Search.find_by(text: self.search_term).id
     }
   end
 end
