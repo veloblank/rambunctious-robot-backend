@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_01_15_100403) do
     t.integer "words_low"
     t.integer "words_high"
     t.integer "search_id"
-    t.integer "reading_plan_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
