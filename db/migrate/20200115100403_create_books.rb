@@ -9,8 +9,6 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.integer :words_low
       t.integer :words_high
       t.integer :search_id
-      t.integer :reading_plan_id
-
 
       t.timestamps
     end

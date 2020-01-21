@@ -28,7 +28,7 @@ class GoodreadsScraper < ApplicationRecord
       large_img: large_img_src,
       pages: num_pages,
       words_low: num_words_low,
-      words_high: num_words_high
+      words_high: num_words_high,
       search_id: Search.find_by(text: self.search_term).id
     }
   end

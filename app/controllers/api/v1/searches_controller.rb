@@ -10,8 +10,7 @@ class Api::V1::SearchesController < ApplicationController
     scraper = GoodreadsScraper.new(search_term: params[:text])
     scraper.sanitize_search_term
     book_html = scraper.scrape_goodreads_for_book
-    book = Book.create(book_html)
-    binding.pry
+    book = Book.new(book_html)
     render json: book, status: 200
   end
 
