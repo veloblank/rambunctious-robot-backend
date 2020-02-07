@@ -11,6 +11,7 @@ class Api::V1::SearchesController < ApplicationController
     scraper.sanitize_search_term
     book_html = scraper.scrape_goodreads_for_book
     book = Book.create(book_html)
+    book.search = search
     render json: book, status: 200
   end
 

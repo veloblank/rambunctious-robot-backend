@@ -1,3 +1,3 @@
 class Search < ApplicationRecord
-  has_many :books
+  has_one :book
 end
